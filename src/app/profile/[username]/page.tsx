@@ -5,6 +5,7 @@ import { NavbarShell } from "@/components/shared/navbar-shell";
 import { ContentImage } from "@/components/shared/content-image";
 import { TaskPostCard } from "@/components/shared/task-post-card";
 import { Button } from "@/components/ui/button";
+import { ProfileSidebarEnhanced } from "@/components/profile/profile-sidebar-enhanced";
 import { SchemaJsonLd } from "@/components/seo/schema-jsonld";
 import { buildPostUrl } from "@/lib/task-data";
 import { buildPostMetadata, buildTaskMetadata } from "@/lib/seo";
@@ -109,83 +110,90 @@ export default async function ProfileDetailPage({ params }: { params: Promise<{ 
   return (
     <div className="min-h-screen bg-background">
       <NavbarShell />
-      <main className="mx-auto w-full max-w-6xl px-4 pb-16 pt-10 sm:px-6 lg:px-8">
+      <main className="mx-auto w-full max-w-7xl px-4 pb-16 pt-10 sm:px-6 lg:px-8">
         <SchemaJsonLd data={breadcrumbData} />
-        <section className="rounded-3xl border border-border/60 bg-white/90 p-8 shadow-sm md:p-12">
-          <div className="grid gap-8 md:grid-cols-[200px_1fr] md:items-start">
-            <div className="flex justify-center md:justify-start">
-              <div className="relative h-36 w-36 overflow-hidden rounded-full border border-border/70 bg-muted">
-                {logoUrl ? (
-                  <ContentImage src={logoUrl} alt={post.title} fill className="object-cover" sizes="144px" intrinsicWidth={144} intrinsicHeight={144} />
-                ) : (
-                  <div className="flex h-full w-full items-center justify-center text-3xl font-semibold text-muted-foreground">
-                    {post.title.slice(0, 1).toUpperCase()}
-                  </div>
-                )}
+        <div className="grid gap-8 lg:grid-cols-[280px_1fr]">
+          {/* Left Sidebar */}
+          <aside className="lg:sticky lg:top-24 lg:h-fit">
+          <ProfileSidebarEnhanced
+            brandName={brandName}
+            logoUrl={logoUrl}
+            fallbackText={post.title.slice(0, 1).toUpperCase()}
+            profileUrl={typeof window !== 'undefined' ? window.location.href : ''}
+          />
+          </aside>
+
+          {/* Main Content */}
+          <div className="space-y-8">
+            {/* Profile Section */}
+            <section className="rounded-2xl border border-border/60 bg-white/90 p-8 shadow-sm">
+              {/* About Section */}
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <h3 className="text-lg font-semibold text-foreground">about</h3>
+                  <span className="text-red-500">♡</span>
+                </div>
+                <article
+                  className="article-content prose prose-slate max-w-none text-base leading-relaxed prose-p:my-3 prose-a:text-primary prose-a:underline prose-strong:font-semibold"
+                  dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+                />
               </div>
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold text-foreground sm:text-4xl">{brandName}</h1>
-              {domain ? (
-                <p className="mt-1 text-sm font-medium text-muted-foreground">{domain}</p>
-              ) : null}
-              <article
-                className="article-content prose prose-slate mt-6 max-w-2xl text-base leading-relaxed prose-p:my-4 prose-a:text-primary prose-a:underline prose-strong:font-semibold"
-                dangerouslySetInnerHTML={{ __html: descriptionHtml }}
-              />
+              
+              {/* Website Link */}
               {website ? (
-                <div className="mt-8">
-                  <Button asChild size="lg" className="px-7 text-base">
+                <div className="mt-6">
+                  <Button asChild variant="outline" className="px-6">
                     <Link href={website} target="_blank" rel="noopener noreferrer">
                       Visit Official Site
                     </Link>
                   </Button>
                 </div>
               ) : null}
-            </div>
-          </div>
-        </section>
+            </section>
 
-        {suggestedArticles.length ? (
-          <section className="mt-12">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-foreground">Suggested articles</h2>
-              <Link href="/articles" className="text-sm font-medium text-primary hover:underline">
-                View all
-              </Link>
-            </div>
-            <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {suggestedArticles.slice(0, 3).map((article) => (
-                <TaskPostCard
-                  key={article.id}
-                  post={article}
-                  href={buildPostUrl("article", article.slug)}
-                  compact
-                />
-              ))}
-            </div>
-            <nav className="mt-6 rounded-2xl border border-border bg-card/60 p-4">
-              <p className="text-sm font-semibold text-foreground">Related links</p>
-              <ul className="mt-2 space-y-2 text-sm">
-                {suggestedArticles.slice(0, 3).map((article) => (
-                  <li key={`related-${article.id}`}>
-                    <Link
-                      href={buildPostUrl("article", article.slug)}
-                      className="text-primary underline-offset-4 hover:underline"
-                    >
-                      {article.title}
-                    </Link>
-                  </li>
-                ))}
-                <li>
-                  <Link href="/profile" className="text-primary underline-offset-4 hover:underline">
-                    Browse all profiles
+            {/* Suggested Articles Section */}
+            {suggestedArticles.length ? (
+              <section>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-xl font-semibold text-foreground">Suggested articles</h2>
+                  <Link href="/articles" className="text-sm font-medium text-primary hover:underline">
+                    View all
                   </Link>
-                </li>
-              </ul>
-            </nav>
-          </section>
-        ) : null}
+                </div>
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-6">
+                  {suggestedArticles.slice(0, 3).map((article) => (
+                    <TaskPostCard
+                      key={article.id}
+                      post={article}
+                      href={buildPostUrl("article", article.slug)}
+                      compact
+                    />
+                  ))}
+                </div>
+                <nav className="rounded-2xl border border-border bg-card/60 p-4">
+                  <p className="text-sm font-semibold text-foreground">Related links</p>
+                  <ul className="mt-2 space-y-2 text-sm">
+                    {suggestedArticles.slice(0, 3).map((article) => (
+                      <li key={`related-${article.id}`}>
+                        <Link
+                          href={buildPostUrl("article", article.slug)}
+                          className="text-primary underline-offset-4 hover:underline"
+                        >
+                          {article.title}
+                        </Link>
+                      </li>
+                    ))}
+                    <li>
+                      <Link href="/profile" className="text-primary underline-offset-4 hover:underline">
+                        Browse all profiles
+                      </Link>
+                    </li>
+                  </ul>
+                </nav>
+              </section>
+            ) : null}
+          </div>
+        </div>
       </main>
       <Footer />
     </div>

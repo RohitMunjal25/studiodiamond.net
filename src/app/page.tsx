@@ -373,9 +373,6 @@ function VisualHome({ primaryTask, imagePosts, profilePosts, articlePosts }: { p
                 Open gallery
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/profile" className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.actionAlt}`}>
-                Meet creators
-              </Link>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
@@ -393,24 +390,11 @@ function VisualHome({ primaryTask, imagePosts, profilePosts, articlePosts }: { p
           </div>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className={`rounded-[2rem] p-7 ${tone.panel}`}>
+        <div className={`mt-12 rounded-[2rem] p-7 ${tone.panel}`}>
             <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Visual notes</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">Larger media surfaces, fewer boxes, stronger pacing.</h2>
-            <p className={`mt-4 max-w-2xl text-sm leading-8 ${tone.muted}`}>This product avoids business-directory density and publication framing. The homepage behaves more like a visual board, with profile surfaces and imagery leading the experience.</p>
+            <p className={`mt-4 max-w-2xl text-sm leading-8 ${tone.muted}`}>This product avoids business-directory density and publication framing. The homepage behaves more like a visual board with imagery leading the experience.</p>
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {creators.map((post) => (
-              <Link key={post.id} href={`/profile/${post.slug}`} className={`rounded-[1.8rem] p-5 ${tone.soft}`}>
-                <div className="relative h-40 overflow-hidden rounded-[1.2rem]">
-                  <ContentImage src={getPostImage(post)} alt={post.title} fill className="object-cover" />
-                </div>
-                <h3 className="mt-4 text-lg font-semibold">{post.title}</h3>
-                <p className={`mt-2 text-sm leading-7 ${tone.muted}`}>{post.summary || 'Creator profile and visual identity surface.'}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
       </section>
     </main>
   )
@@ -439,9 +423,6 @@ function CurationHome({ primaryTask, bookmarkPosts, profilePosts, articlePosts }
                 Open collections
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/profile" className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${tone.actionAlt}`}>
-                Explore curators
-              </Link>
             </div>
           </div>
 
@@ -456,24 +437,11 @@ function CurationHome({ primaryTask, bookmarkPosts, profilePosts, articlePosts }
           </div>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className={`rounded-[2rem] p-7 ${tone.panel}`}>
+        <div className={`mt-12 rounded-[2rem] p-7 ${tone.panel}`}>
             <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Why this feels different</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">More like saved boards and reading shelves than a generic post feed.</h2>
             <p className={`mt-4 max-w-2xl text-sm leading-8 ${tone.muted}`}>The structure is calmer, the cards are less noisy, and the page encourages collecting and returning instead of forcing everything into a fast-scrolling list.</p>
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {people.map((post) => (
-              <Link key={post.id} href={`/profile/${post.slug}`} className={`rounded-[1.8rem] p-5 ${tone.soft}`}>
-                <div className="relative h-32 overflow-hidden rounded-[1.2rem]">
-                  <ContentImage src={getPostImage(post)} alt={post.title} fill className="object-cover" />
-                </div>
-                <h3 className="mt-4 text-lg font-semibold">{post.title}</h3>
-                <p className={`mt-2 text-sm leading-7 ${tone.muted}`}>Curator profile, saved resources, and collection notes.</p>
-              </Link>
-            ))}
-          </div>
-        </div>
       </section>
     </main>
   )

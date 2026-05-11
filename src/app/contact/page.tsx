@@ -48,12 +48,7 @@ export default function ContactPage() {
               Share what you are publishing, who needs access, and what success looks like. We route studio questions to
               the same calm rhythm as the rest of the site—no generic ticket black holes.
             </p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              <div className={tone.soft}>
-                <Phone className="h-5 w-5 text-[#A98E7B]" />
-                <p className={`mt-3 text-sm font-semibold ${luxe.ink}`}>Studio line</p>
-                <p className={`mt-1 text-sm ${tone.muted}`}>+1 (555) 014-2180 · Weekdays 9a–6p PT</p>
-              </div>
+            <div className="mt-8">
               <div className={tone.soft}>
                 <MapPin className="h-5 w-5 text-[#A98E7B]" />
                 <p className={`mt-3 text-sm font-semibold ${luxe.ink}`}>Visit by appointment</p>

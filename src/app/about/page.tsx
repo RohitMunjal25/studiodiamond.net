@@ -3,17 +3,9 @@ import { PageShell } from '@/components/shared/page-shell'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { mockTeamMembers } from '@/data/mock-data'
 import { SITE_CONFIG } from '@/lib/site-config'
 import { luxe } from '@/components/shared/luxe-styles'
 import { FileText, Shield, Sparkles, User } from 'lucide-react'
-
-const highlights = [
-  { label: 'PDFs catalogued', value: '850+' },
-  { label: 'Public profiles', value: '320+' },
-  { label: 'Support response', value: '< 24h' },
-]
 
 const values = [
   {
@@ -45,14 +37,9 @@ export default function AboutPage() {
       title={`About ${SITE_CONFIG.name}`}
       description={`${SITE_CONFIG.name} is a calm studio for downloadable PDFs and public profiles—structured publishing without the noise of listings, classifieds, or social feeds.`}
       actions={
-        <>
-          <Button variant="outline" asChild className={luxe.btnOutline}>
-            <Link href="/team">Meet the team</Link>
-          </Button>
-          <Button asChild className={luxe.btnPrimary}>
-            <Link href="/contact">Contact us</Link>
-          </Button>
-        </>
+        <Button asChild className={luxe.btnPrimary}>
+          <Link href="/contact">Contact us</Link>
+        </Button>
       }
     >
       <div className="grid gap-8 lg:grid-cols-[1.12fr_0.88fr]">
@@ -71,15 +58,7 @@ export default function AboutPage() {
               The interface borrows cues from luxury editorial sites: generous spacing, serif headlines, and bronze CTAs
               that feel tactile instead of neon-bright.
             </p>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {highlights.map((item) => (
-                <div key={item.label} className={luxe.soft}>
-                  <div className={`font-display text-3xl font-semibold ${luxe.ink}`}>{item.value}</div>
-                  <div className={`mt-1 text-xs font-medium uppercase tracking-wide ${luxe.muted}`}>{item.label}</div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
+                      </CardContent>
         </Card>
         <div className="flex flex-col gap-4">
           {values.map((value) => (
@@ -123,30 +102,6 @@ export default function AboutPage() {
         </Card>
       </div>
 
-      <div className="mt-10">
-        <p className={luxe.eyebrow}>People behind the studio</p>
-        <h2 className={`mt-2 font-display text-2xl font-semibold ${luxe.ink}`}>Core team</h2>
-        <div className="mt-6 grid gap-6 md:grid-cols-3">
-          {mockTeamMembers.map((member) => (
-            <Card key={member.id} className={`${luxe.card} transition-transform hover:-translate-y-1`}>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3">
-                  <Avatar className="h-12 w-12 border border-[#e5d9cf]">
-                    <AvatarImage src={member.avatar} alt={member.name} />
-                    <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className={`text-sm font-semibold ${luxe.ink}`}>{member.name}</p>
-                    <p className={`text-xs ${luxe.muted}`}>{member.role}</p>
-                  </div>
-                </div>
-                <p className={`mt-3 text-sm leading-relaxed ${luxe.muted}`}>{member.bio}</p>
-                <p className={`mt-3 text-xs ${luxe.muted}`}>{member.location}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
     </PageShell>
   )
 }

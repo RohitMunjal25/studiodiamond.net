@@ -28,7 +28,7 @@ export default async function SearchPage({
   const resolved = (await searchParams) || {}
   const query = (resolved.q || '').trim()
   const normalized = query.toLowerCase()
-  const category = (resolved.category || '').trim().toLowerCase()
+  const category = resolved.category ? resolved.category.trim().toLowerCase() : ''
   const task = (resolved.task || '').trim().toLowerCase()
   const useMaster = resolved.master !== '0'
   const feed = await fetchSiteFeed(

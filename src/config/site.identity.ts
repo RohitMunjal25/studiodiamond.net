@@ -1,10 +1,10 @@
 export const siteIdentity = {
   code: process.env.NEXT_PUBLIC_SITE_CODE || 'z22mm1frra',
   name: process.env.NEXT_PUBLIC_SITE_NAME || 'Studiodiamond',
-  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'PDF + Profile platform',
+  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'PDF platform',
   description:
     process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
-    'A pdf + profile site for Studiodiamond, built for clean discovery and structured publishing.',
+    'A pdf site for Studiodiamond, built for clean discovery and structured publishing.',
   domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'studiodiamond.net',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://studiodiamond.net',
   ogImage: process.env.NEXT_PUBLIC_SITE_OG_IMAGE || '/og-default.png',

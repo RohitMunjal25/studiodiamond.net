@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 
 
 import { useMemo } from "react";
@@ -31,6 +33,14 @@ type Props = {
 
 
 export function TaskListClient({ task, initialPosts, category }: Props) {
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+
+    setMounted(true);
+
+  }, []);
 
   const localPosts = getLocalPostsForTask(task);
 

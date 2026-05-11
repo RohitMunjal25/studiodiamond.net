@@ -123,13 +123,6 @@ export function PdfProfileLuxuryHome({
                 PDF library
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link
-                href="/profile"
-                className="inline-flex items-center gap-2 rounded-md border border-[#d9c9bc] bg-white px-5 py-2.5 text-sm font-semibold text-[#2a211c] hover:bg-[#faf6f2]"
-              >
-                Profiles
-                <ArrowRight className="h-4 w-4" />
-              </Link>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
@@ -160,7 +153,7 @@ export function PdfProfileLuxuryHome({
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-center font-display text-3xl font-semibold tracking-[-0.03em] text-[#2a211c] sm:text-4xl">{copy.servicesTitle}</h2>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {copy.services.map((svc) => {
+            {copy.services.filter((svc) => svc.href !== '/profile').map((svc) => {
               const highlight = 'highlight' in svc && svc.highlight
               return (
                 <Link
@@ -175,8 +168,6 @@ export function PdfProfileLuxuryHome({
                   <div className="flex h-10 w-10 items-center justify-center rounded-full border border-current/15 bg-white/10">
                     {svc.href === '/pdf' ? (
                       <FileText className={`h-5 w-5 ${highlight ? 'text-white' : 'text-[#A98E7B]'}`} />
-                    ) : svc.href === '/profile' ? (
-                      <User className={`h-5 w-5 ${highlight ? 'text-white' : 'text-[#A98E7B]'}`} />
                     ) : (
                       <Sparkles className={`h-5 w-5 ${highlight ? 'text-white' : 'text-[#A98E7B]'}`} />
                     )}
@@ -229,18 +220,11 @@ export function PdfProfileLuxuryHome({
       </section>
 
       <section className="bg-[#f3ebe4] py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:items-center">
-          <div>
-            <Quote className="h-10 w-10 text-[#A98E7B]" />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <Quote className="h-10 w-10 text-[#A98E7B] mx-auto" />
             <p className="mt-6 font-display text-xl italic leading-relaxed text-[#3d3229] sm:text-2xl">&ldquo;{copy.testimonial}&rdquo;</p>
             <p className="mt-6 text-sm font-semibold text-[#6b584d]">{copy.testimonialBy}</p>
-          </div>
-          <div className="grid grid-cols-3 gap-2 sm:gap-3">
-            {profilePosts.slice(0, 3).map((post) => (
-              <Link key={post.id} href={getTaskHref(resolvePostTask(post, 'profile'), post.slug)} className="relative aspect-square overflow-hidden rounded-xl border border-[#e5d9cf] bg-white">
-                <ContentImage src={getPostImage(post)} alt={post.title} fill className="object-cover" />
-              </Link>
-            ))}
           </div>
         </div>
       </section>

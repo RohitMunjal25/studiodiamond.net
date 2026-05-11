@@ -19,7 +19,7 @@ const taskIcons: Record<TaskKey, any> = {
 }
 
 const footerLinks = {
-  platform: SITE_CONFIG.tasks.filter((task) => task.enabled).map((task) => ({
+  platform: SITE_CONFIG.tasks.filter((task) => task.enabled && task.key !== 'profile').map((task) => ({
     name: task.label,
     href: task.route,
     icon: taskIcons[task.key] || LayoutGrid,
@@ -27,17 +27,14 @@ const footerLinks = {
   company: [
     { name: 'About', href: '/about' },
     { name: 'Careers', href: '/careers' },
-    { name: 'Press', href: '/press' },
   ],
   resources: [
     { name: 'Help Center', href: '/help' },
-    { name: 'Status', href: '/status' },
+    { name: 'Contact', href: '/contact' },
   ],
   legal: [
     { name: 'Privacy', href: '/privacy' },
     { name: 'Terms', href: '/terms' },
-    { name: 'Cookies', href: '/cookies' },
-    { name: 'Licenses', href: '/licenses' },
   ],
 }
 
@@ -184,19 +181,6 @@ export function Footer() {
               </div>
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-7 text-[#d8c9bc]">{SITE_CONFIG.description}</p>
-            <div className="mt-6 flex gap-3">
-              {socialLinks.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border border-white/15 bg-white/5 p-2.5 text-[#f7f1ea] hover:bg-white/10"
-                >
-                  <item.icon className="h-4 w-4" />
-                </Link>
-              ))}
-            </div>
           </div>
           {(['platform', 'company', 'resources', 'legal'] as const).map((section) => (
             <div key={section}>

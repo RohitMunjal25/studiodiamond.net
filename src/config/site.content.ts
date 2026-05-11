@@ -2,10 +2,10 @@ import type { TaskKey } from '@/lib/site-config'
 
 export const siteContent = {
   navbar: {
-    tagline: 'PDF library & profiles',
+    tagline: '',
   },
   footer: {
-    tagline: 'PDF library & profiles',
+    tagline: '',
   },
   hero: {
     badge: 'Documents & identity',
@@ -122,31 +122,31 @@ export const siteContent = {
 export const taskPageMetadata: Record<Exclude<TaskKey, 'comment' | 'org' | 'social'>, { title: string; description: string }> = {
   article: {
     title: 'Articles and stories',
-    description: 'A PDF + Profile site for Studiodiamond, built for clean discovery and structured publishing.',
+    description: 'A PDF site for studiodiamong, built for clean discovery and structured publishing.',
   },
   listing: {
     title: 'Listings and discoverable pages',
-    description: 'A PDF + Profile site for Studiodiamond, built for clean discovery and structured publishing.',
+    description: 'A PDF site for studiodiamong, built for clean discovery and structured publishing.',
   },
   classified: {
     title: 'Classifieds and announcements',
-    description: 'A PDF + Profile site for Studiodiamond, built for clean discovery and structured publishing.',
+    description: 'A PDF site for studiodiamong, built for clean discovery and structured publishing.',
   },
   image: {
     title: 'Images and visual posts',
-    description: 'A PDF + Profile site for Studiodiamond, built for clean discovery and structured publishing.',
+    description: 'A PDF site for studiodiamong, built for clean discovery and structured publishing.',
   },
   profile: {
     title: 'Profiles and public pages',
-    description: 'A PDF + Profile site for Studiodiamond, built for clean discovery and structured publishing.',
+    description: 'A PDF site for studiodiamong, built for clean discovery and structured publishing.',
   },
   sbm: {
     title: 'Curated links and saved resources',
-    description: 'A PDF + Profile site for Studiodiamond, built for clean discovery and structured publishing.',
+    description: 'A PDF site for studiodiamong, built for clean discovery and structured publishing.',
   },
   pdf: {
     title: 'PDFs and downloadable resources',
-    description: 'A PDF + Profile site for Studiodiamond, built for clean discovery and structured publishing.',
+    description: 'A PDF site for studiodiamong, built for clean discovery and structured publishing.',
   },
 }
 
